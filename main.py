@@ -16,7 +16,7 @@ model = None
 @app.on_event("startup")
 def load_model():
     global model
-    model_path = "bayesian_network_modelss.pkl"
+    model_path = "bayesian_network_modeltfem.pkl"
     print(f"Current working directory: {os.getcwd()}")
     print(f"Attempting to load model from: {model_path}")
     if not os.path.exists(model_path):
@@ -43,7 +43,7 @@ class HealthInput(BaseModel):
     BMI: Optional[float] = None
     hypertension: Optional[int] = None 
     is_smoking: Optional[int] = None
-    is_pregnant: Optional[int] = None
+    # is_pregnant: Optional[int] = None
     hemoglobin_a1c:Optional[float] = None
     Diabetes_pedigree: Optional[float] = None
     CVD_Family_History: Optional[int] = None
@@ -73,7 +73,7 @@ def preprocess_data(input_data, model):
         'BMI': 'BMI',
         'hypertension': 'hypertension',
         'is_smoking': 'is_smoking',
-        'is_pregnant': 'is_pregnant',
+        #'is_pregnant': 'is_pregnant',
         'hemoglobin_a1c': 'hemoglobin_a1c',
         'Diabetes_pedigree': 'Diabetes_pedigree',
         'CVD_Family_History': 'CVD_Family_History',
@@ -125,7 +125,7 @@ def preprocess_data(input_data, model):
 
             try:
                 # Convert value to correct type based on expected field
-                if model_node in ['hypertension', 'is_smoking', 'is_pregnant', 
+                if model_node in ['hypertension', 'is_smoking',
                                 'Diabetes_pedigree', 'CVD_Family_History', 
                                 'is_alcohol_user']:
                     processed_value = int(value) if value is not None else None
